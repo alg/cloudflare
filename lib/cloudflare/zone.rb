@@ -94,10 +94,10 @@ module Cloudflare
 		end
 		
 		def find_by_name(name)
-			response = self.get(params: {name: name}).result
+			results = self.get(params: {name: name}).result
 			
-			unless response.empty?
-				record = response.results.first
+			unless results.empty?
+				record = results.first
 				
 				Zone.new(concat_urls(url, record[:id]), record, **options)
 			end
